@@ -8,7 +8,7 @@ export default function WantParticipate() {
 
     return (
         <>
-            <button className='btn btn-success' onClick={() => modalRef.current?.showModal()}>Quiero participar</button>
+            <button className='btn btn-success' type='button' onClick={() => modalRef.current?.showModal()}>Quiero participar</button>
             <dialog ref={modalRef} className="modal">
                 <div className="modal-box text-base-content">
                     <h3 className="text-lg">¡Rifa Solidaria <strong>Valor 2$!</strong></h3>
@@ -26,11 +26,11 @@ export default function WantParticipate() {
                         </div>
                     </div>
                     <div className='mt-6 text-center'>
-                        <p>Selecciona el numero que hayas comprado en la rifa en <b>Seleccionar un número</b>:</p>
+                        <p className='text-sm md:text-base'>Selecciona el numero que hayas comprado en la rifa en <b>Seleccionar un número</b>:</p>
                         {/* <p className='text-center text-sm'>¡Gracias por tu apoyo!</p> */}
                     </div>
                     <div className="modal-action">
-                        <form method="dialog" className='flex gap-3'>
+                        <form method="dialog" className='flex gap-3 flex-wrap'>
                             <a href='https://ouo.io/wbV16z' target='_blank' className='btn btn-accent'>¡Apoya con 1 Click!</a>
                             <NumberAvailable />
                             <button className="btn" onClick={() => modalRef.current?.close()}>Cerrar</button>
