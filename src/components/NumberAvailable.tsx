@@ -5,11 +5,17 @@ const alreadyUsed: number[] = []
 const NumberAvailable = () => {
     const modalRef = useRef<HTMLDialogElement | null>(null)
 
+    /**
+     * Click sobre el botón, para ver números disponibles
+     */
     const disponibleNum = useCallback((event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault()
         modalRef.current?.showModal()
     }, [])
 
+    /**
+     * Click sobre el numero de la rifa
+     */
     const handleClickNum = useCallback((event: React.MouseEvent<HTMLButtonElement>, num: number) => {
         event.preventDefault()
 
@@ -30,8 +36,9 @@ const NumberAvailable = () => {
                         {Array.from({ length: 100 }, (_, i) => i).map((num) => (
                             <li key={num}>
                                 <button
-                                    className={`hover:bg-base-300 transition cursor-pointer px-2 py-1 ${alreadyUsed.includes(num) ? 'bg-success-content text-base-200' : ''}`}
+                                    className={`hover:bg-base-300 transition cursor-pointer px-2 py-1 ${alreadyUsed.includes(num) ? 'bg-success-content text-base-200 tooltip' : ''}`}
                                     onClick={(e) => handleClickNum(e, num)}
+                                    data-tip="Este número ya fue usado"
                                 >{num < 10 ? `0${num}` : num}</button>
                             </li>
                         ))}
