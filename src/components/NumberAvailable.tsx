@@ -1,9 +1,9 @@
 import React, { useCallback, useRef } from 'react'
-
-const alreadyUsed: number[] = []
+import getDataUsed from '../data/01.json'
 
 const NumberAvailable = () => {
     const modalRef = useRef<HTMLDialogElement | null>(null)
+    const alreadyUsed = useRef(getDataUsed.used as number[]).current
 
     /**
      * Click sobre el botón, para ver números disponibles
@@ -24,7 +24,7 @@ const NumberAvailable = () => {
         }
 
         window.open(`https://wa.me/+584124413347?text=Compre el Numero *${num}* de la rifa de Angelo Camacho`, '_blank')
-    }, [])
+    }, [alreadyUsed])
 
     return (
         <>
