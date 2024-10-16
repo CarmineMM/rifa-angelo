@@ -28,7 +28,7 @@ const NumberAvailable = () => {
 
     return (
         <>
-            <button className='btn btn-accent' onClick={disponibleNum}>Números disponibles</button>
+            <button className='btn btn-primary' onClick={disponibleNum}>Seleccionar un número</button>
             <dialog ref={modalRef} className="modal">
                 <div className="modal-box text-base-content">
                     <h3 className="text-lg mb-5">Números Disponibles</h3>

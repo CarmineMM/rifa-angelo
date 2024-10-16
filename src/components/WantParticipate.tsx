@@ -12,7 +12,7 @@ export default function WantParticipate() {
             <dialog ref={modalRef} className="modal">
                 <div className="modal-box text-base-content">
                     <h3 className="text-lg">¡Rifa Solidaria <strong>Valor 2$!</strong></h3>
-                    <p className="py-4 text-xs md:text-sm">Estamos rifando una <b>Limpieza Dental con la <a href="">OD Dayana Camacho</a></b> para cubrir los gatos de la operación de <b>Angelo Camacho</b>, que sufrió un accidente te transito y necesita un <b>Sistema de Tight Rope para la clavícula</b></p>
+                    <p className="py-4 text-xs md:text-sm">Estamos rifando una <b>Limpieza Dental con la <a href="">OD Dayana Camacho</a></b> para cubrir los gatos de la operación de <b>Angelo Camacho</b>, que sufrió un accidente te transito y necesita un <b>Sistema de Tight Rope para la clavícula</b>.</p>
                     <p className='font-bold text-4xl mb-6'>Valor 2$</p>
                     <div className='grid md:grid-cols-2'>
                         <a className='flex flex-col items-center md:pr-3 md:border-r mb-4 md:mb-0' href="mailto:jordanacamacho20@gmail.com" target='_blank'>
@@ -26,12 +26,12 @@ export default function WantParticipate() {
                         </div>
                     </div>
                     <div className='mt-6 text-center'>
-                        <p>Selecciona el numero que hayas comprado en la rifa a en <b>Números disponibles</b>:</p>
+                        <p>Selecciona el numero que hayas comprado en la rifa en <b>Seleccionar un número</b>:</p>
                         {/* <p className='text-center text-sm'>¡Gracias por tu apoyo!</p> */}
                     </div>
                     <div className="modal-action">
                         <form method="dialog" className='flex gap-3'>
-                            <a href='https://ouo.io/wbV16z' target='_blank' className='btn btn-primary'>¡Apoya con 1 Click!</a>
+                            <a href='https://ouo.io/wbV16z' target='_blank' className='btn btn-accent'>¡Apoya con 1 Click!</a>
                             <NumberAvailable />
                             <button className="btn" onClick={() => modalRef.current?.close()}>Cerrar</button>
                         </form>
