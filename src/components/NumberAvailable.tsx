@@ -39,6 +39,7 @@ const NumberAvailable = () => {
                                     className={`hover:bg-base-300 transition cursor-pointer px-2 py-1 ${alreadyUsed.includes(num) ? 'bg-success-content text-base-200 tooltip' : ''}`}
                                     onClick={(e) => handleClickNum(e, num)}
                                     data-tip="Este número ya fue usado"
+                                    type='button'
                                 >{num < 10 ? `0${num}` : num}</button>
                             </li>
                         ))}
@@ -60,6 +61,7 @@ const NumberAvailable = () => {
                     <div className="modal-action">
                         <button
                             className="btn"
+                            type='button'
                             onClick={(e) => {
                                 e.preventDefault()
                                 modalRef.current?.close()

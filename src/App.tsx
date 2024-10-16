@@ -2,6 +2,7 @@ import WantParticipate from './components/WantParticipate';
 import primaryImg from './assets/WhatsApp Image 2024-09-19 at 5.16.25 PM.jpeg'
 import secondaryImg from './assets/WhatsApp Image 2024-10-13 at 2.16.57 PM.jpeg'
 import Counter from './components/Counter';
+import Acknowledgements from './components/Acknowledgements';
 
 export default function App() {
   return (
@@ -15,9 +16,7 @@ export default function App() {
         <Counter />
         <WantParticipate />
       </div>
-      <div className='absolute bottom-7 md:bottom-3 text-neutral'>
-        <p>¡Gracias de antemano por tu apoyo!</p>
-      </div>
+      <Acknowledgements />
     </main>
   )
 }
