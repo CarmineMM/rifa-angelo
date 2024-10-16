@@ -1,4 +1,3 @@
-import React from 'react'
 import ZeaburLogo from '../assets/zeabur-logo.png'
 
 const Acknowledgements = () => {
