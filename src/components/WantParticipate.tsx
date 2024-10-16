@@ -29,7 +29,8 @@ export default function WantParticipate() {
                         <p className='text-center text-sm'>¡Gracias por tu apoyo!</p>
                     </div>
                     <div className="modal-action">
-                        <form method="dialog">
+                        <form method="dialog" className='flex gap-3'>
+                            <a href='https://ouo.io/wbV16z' target='_blank' className='btn btn-primary'>Apoya con 1 Click!</a>
                             <button className="btn">Cerrar</button>
                         </form>
                     </div>
