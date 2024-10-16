@@ -6,9 +6,9 @@ import Counter from './components/Counter';
 export default function App() {
   return (
     <main className='bg-gradient-to-t from-accent h-screen w-screen flex items-center justify-center flex-col relative'>
-      <h1 className='text-center text-2xl mb-6'>¡Rifa Solidaria!</h1>
       <img src={primaryImg} alt="" className='rounded-3xl absolute top-7 left-7 h-52 -rotate-12' />
       <img src={secondaryImg} alt="" className='rounded-3xl absolute top-7 right-7 h-52 rotate-12' />
+      <h1 className='text-center text-2xl mb-6 mt-8 md:mt-0'>¡Rifa Solidaria!</h1>
       <div className='text-center'>
         <p className='text-secondary'>Número Ganador:</p>
         <Counter />

@@ -3,7 +3,7 @@ import PayPalLogo from '../assets/Paypal_2014_logo.png'
 import BBVAProvincial from '../assets/BBVAprovincialbackground.webp'
 
 export default function WantParticipate() {
-    const modalRef = useRef(null)
+    const modalRef = useRef<HTMLDialogElement | null>(null)
 
     return (
         <>
@@ -11,10 +11,10 @@ export default function WantParticipate() {
             <dialog ref={modalRef} className="modal">
                 <div className="modal-box text-base-content">
                     <h3 className="text-lg">¡Rifa Solidaria <strong>Valor 2$!</strong></h3>
-                    <p className="py-4 text-sm">Estamos rifando una <b>Limpieza Dental con la <a href="">OD Dayana Camacho</a></b> para cubrir los gatos de la operación de <b>Angelo Camacho</b>, que sufrió un accidente te transito y necesita un <b>Sistema de Tight Rope para la clavícula</b></p>
+                    <p className="py-4 text-xs md:text-sm">Estamos rifando una <b>Limpieza Dental con la <a href="">OD Dayana Camacho</a></b> para cubrir los gatos de la operación de <b>Angelo Camacho</b>, que sufrió un accidente te transito y necesita un <b>Sistema de Tight Rope para la clavícula</b></p>
                     <p className='font-bold text-4xl mb-6'>Valor 2$</p>
                     <div className='grid md:grid-cols-2'>
-                        <a className='flex flex-col items-center pr-3 border-r' href="mailto:jordanacamacho20@gmail.com" target='_blank'>
+                        <a className='flex flex-col items-center md:pr-3 md:border-r mb-4 md:mb-0' href="mailto:jordanacamacho20@gmail.com" target='_blank'>
                             <img src={PayPalLogo} alt="" className='w-20 mb-2' />
                             <h4 className='text-sm'>jordanacamacho20@gmail.com</h4>
                         </a>
