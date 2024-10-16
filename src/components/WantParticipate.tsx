@@ -1,6 +1,7 @@
 import { useRef } from 'react'
 import PayPalLogo from '../assets/Paypal_2014_logo.png'
 import BBVAProvincial from '../assets/BBVAprovincialbackground.webp'
+import NumberAvailable from './NumberAvailable'
 
 export default function WantParticipate() {
     const modalRef = useRef<HTMLDialogElement | null>(null)
@@ -25,13 +26,14 @@ export default function WantParticipate() {
                         </div>
                     </div>
                     <div className='mt-6 text-center'>
-                        <p>Envía un WhatsApp a <a href="tel:0412-441-3347">0412-441-3347</a> con la captura</p>
-                        <p className='text-center text-sm'>¡Gracias por tu apoyo!</p>
+                        <p>Selecciona el numero que hayas comprado en la rifa a en <b>Números disponibles</b>:</p>
+                        {/* <p className='text-center text-sm'>¡Gracias por tu apoyo!</p> */}
                     </div>
                     <div className="modal-action">
                         <form method="dialog" className='flex gap-3'>
-                            <a href='https://ouo.io/wbV16z' target='_blank' className='btn btn-primary'>Apoya con 1 Click!</a>
-                            <button className="btn">Cerrar</button>
+                            <a href='https://ouo.io/wbV16z' target='_blank' className='btn btn-primary'>¡Apoya con 1 Click!</a>
+                            <NumberAvailable />
+                            <button className="btn" onClick={() => modalRef.current?.close()}>Cerrar</button>
                         </form>
                     </div>
                 </div>
