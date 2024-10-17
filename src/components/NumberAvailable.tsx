@@ -3,7 +3,7 @@ import getDataUsed from '../data/01.json'
 
 const NumberAvailable = () => {
     const modalRef = useRef<HTMLDialogElement | null>(null)
-    const alreadyUsed = useRef(getDataUsed.used as number[]).current
+    const alreadyUsed = useRef(getDataUsed.used.map(item => item.num) as number[]).current
 
     /**
      * Click sobre el botón, para ver números disponibles
@@ -30,15 +30,15 @@ const NumberAvailable = () => {
         <>
             <button className='btn btn-primary' onClick={disponibleNum}>Seleccionar un número</button>
             <dialog ref={modalRef} className="modal">
-                <div className="modal-box text-base-content">
+                <div className="modal-box text-base-content overflow-hidden">
                     <h3 className="text-lg mb-5">Números Disponibles</h3>
                     <ul className='grid grid-cols-10 gap-2.5'>
                         {Array.from({ length: 100 }, (_, i) => i).map((num) => (
                             <li key={num}>
                                 <button
-                                    className={`hover:bg-base-300 transition cursor-pointer px-2 py-1 ${alreadyUsed.includes(num) ? 'bg-success-content hover:bg-base-content text-base-200 tooltip' : ''}`}
+                                    className={`hover:bg-base-300 transition cursor-pointer rounded px-2 py-1 ${alreadyUsed.includes(num) ? 'bg-success-content hover:bg-base-content text-base-200 tooltip' : ''}`}
                                     onClick={(e) => handleClickNum(e, num)}
-                                    data-tip="Este número ya fue usado"
+                                    data-tip={`Ocupado por: ${getDataUsed.used.find(item => item.num === num)?.name}`}
                                     type='button'
                                 >{num < 10 ? `0${num}` : num}</button>
                             </li>
