@@ -36,7 +36,7 @@ const NumberAvailable = () => {
                         {Array.from({ length: 100 }, (_, i) => i).map((num) => (
                             <li key={num}>
                                 <button
-                                    className={`hover:bg-base-300 transition cursor-pointer px-2 py-1 ${alreadyUsed.includes(num) ? 'bg-success-content text-base-200 tooltip' : ''}`}
+                                    className={`hover:bg-base-300 transition cursor-pointer px-2 py-1 ${alreadyUsed.includes(num) ? 'bg-success-content hover:bg-base-content text-base-200 tooltip' : ''}`}
                                     onClick={(e) => handleClickNum(e, num)}
                                     data-tip="Este número ya fue usado"
                                     type='button'
