@@ -66,7 +66,7 @@ const NumberAvailable = ({ numbersUsed }: Props) => {
 
         setTimeout(() => {
             window.open(`https://wa.me/+584124413347?text=Compre los Números *${selectedNumbers.join(', ')}* de la rifa de Angelo Camacho, para la *Limpieza Dental con la OD Dayana Camacho*`, '_blank');
-            setFeedback(feedbackDefault);
+            setFeedback((prev) => ({ ...prev, loading: false }));
         }, 800)
     }, [selectedNumbers])
 
