@@ -66,7 +66,8 @@ const NumberAvailable = ({ numbersUsed }: Props) => {
 
         setTimeout(() => {
             window.open(`https://wa.me/+584124413347?text=Compre los Números *${selectedNumbers.join(', ')}* de la rifa de Angelo Camacho, para la *Limpieza Dental con la OD Dayana Camacho*`, '_blank');
-        }, 700)
+            setFeedback(feedbackDefault);
+        }, 800)
     }, [selectedNumbers])
 
     return (
@@ -107,18 +108,28 @@ const NumberAvailable = ({ numbersUsed }: Props) => {
                     </div>
                     <div className="modal-action">
                         {selectedNumbers.length > 0 && (
-                            <button className='btn btn-primary' onClick={processNumbers}>Procesar Números</button>
+                            <button className='btn btn-primary' onClick={processNumbers} disabled={feedback.loading}>
+                                {feedback.loading ? (
+                                    <>
+                                        <span className="loading loading-spinner"></span>
+                                        <span>Cargando</span>
+                                    </>
+                                ) : (
+                                    <span>Procesar Números</span>
+                                )}
+                            </button>
                         )}
                         <button
                             className="btn"
                             type='button'
+                            disabled={feedback.loading}
                             onClick={(e) => {
                                 e.preventDefault()
                                 modalRef.current?.close()
                                 setSelectedNumbers([])
                                 setFeedback(feedbackDefault);
                             }}
-                        >Cerrar</button>
+                        >{feedback.loading ? <span className='loading loading-spinner'></span> : 'Cerrar'}</button>
                     </div>
                 </div>
             </dialog>
