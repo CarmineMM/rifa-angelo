@@ -5,15 +5,17 @@ interface Props {
     numbersUsed: NumberUsed[]
 }
 
+const feedbackDefault = {
+    className: '',
+    message: 'Selecciona los números a adquirir en la rifa',
+    loading: false,
+}
+
 const NumberAvailable = ({ numbersUsed }: Props) => {
     const modalRef = useRef<HTMLDialogElement | null>(null)
     const alreadyUsed = useMemo(() => numbersUsed.map(item => item.num) as number[], [numbersUsed])
-    const [preSelectedNumbers, setSelectedNumbers] = useState<number[]>([])
-    const [feedback, setFeedback] = useState({
-        className: '',
-        message: 'Selecciona los números a adquirir en la rifa',
-        loading: false,
-    });
+    const [selectedNumbers, setSelectedNumbers] = useState<number[]>([])
+    const [feedback, setFeedback] = useState(feedbackDefault);
 
     /**
      * Click sobre el botón, para ver números disponibles
@@ -34,12 +36,12 @@ const NumberAvailable = ({ numbersUsed }: Props) => {
         }
 
         // window.open(`https://wa.me/+584124413347?text=Compre el Numero *${num}* de la rifa de Angelo Camacho`, '_blank')
-        if (preSelectedNumbers.includes(num)) {
+        if (selectedNumbers.includes(num)) {
             setSelectedNumbers(prev => prev.filter(item => item !== num))
         } else {
             setSelectedNumbers(prev => [...prev, num])
         }
-    }, [alreadyUsed, preSelectedNumbers])
+    }, [alreadyUsed, selectedNumbers])
 
     /**
      * Procesar los números
@@ -47,16 +49,25 @@ const NumberAvailable = ({ numbersUsed }: Props) => {
     const processNumbers = useCallback((event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
 
+        if (selectedNumbers.length < 1) {
+            setFeedback({
+                className: 'alert-error',
+                message: 'Primero seleccione uno o mas números',
+                loading: false,
+            });
+            return
+        }
+
         setFeedback({
             className: 'alert-info',
             message: 'Adjunte la referencia de pago en el WhatsApp',
             loading: true,
-        })
+        });
 
         setTimeout(() => {
-            window.open(`https://wa.me/+584124413347?text=Compre los Números *${preSelectedNumbers.join(', ')}* de la rifa de Angelo Camacho, para la *Limpieza Dental con la OD Dayana Camacho*`, '_blank');
+            window.open(`https://wa.me/+584124413347?text=Compre los Números *${selectedNumbers.join(', ')}* de la rifa de Angelo Camacho, para la *Limpieza Dental con la OD Dayana Camacho*`, '_blank');
         }, 700)
-    }, [preSelectedNumbers])
+    }, [selectedNumbers])
 
     return (
         <>
@@ -71,7 +82,7 @@ const NumberAvailable = ({ numbersUsed }: Props) => {
                                     className={`
                                         transition cursor-pointer rounded px-2 py-1 
                                         ${alreadyUsed.includes(num) ? 'bg-success-content hover:bg-base-content text-base-200 tooltip' : ''}
-                                        ${preSelectedNumbers.includes(num) ? 'bg-primary text-base-100' : 'hover:bg-base-300 '}
+                                        ${selectedNumbers.includes(num) ? 'bg-primary text-base-100' : 'hover:bg-base-300 '}
                                     `}
                                     onClick={(e) => handleClickNum(e, num)}
                                     data-tip={`Ocupado por: ${numbersUsed.find(item => item.num === num)?.name}`}
@@ -95,7 +106,7 @@ const NumberAvailable = ({ numbersUsed }: Props) => {
                         <p>{feedback.message}</p>
                     </div>
                     <div className="modal-action">
-                        {setSelectedNumbers.length > 0 && (
+                        {selectedNumbers.length > 0 && (
                             <button className='btn btn-primary' onClick={processNumbers}>Procesar Números</button>
                         )}
                         <button
@@ -105,6 +116,7 @@ const NumberAvailable = ({ numbersUsed }: Props) => {
                                 e.preventDefault()
                                 modalRef.current?.close()
                                 setSelectedNumbers([])
+                                setFeedback(feedbackDefault);
                             }}
                         >Cerrar</button>
                     </div>
