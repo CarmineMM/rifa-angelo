@@ -1,10 +1,29 @@
-import { useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import PayPalLogo from '../assets/Paypal_2014_logo.png'
 import BBVAProvincial from '../assets/BBVAprovincialbackground.webp'
 import NumberAvailable from './NumberAvailable'
+import { firestore } from '../database/Firebase'
+import { collection, getDocs } from "firebase/firestore";
+
+export interface NumberUsed {
+    num: number
+    name: string
+}
 
 export default function WantParticipate() {
     const modalRef = useRef<HTMLDialogElement | null>(null)
+    const [numbersUsed, setNumbersUsed] = useState<NumberUsed[]>([])
+
+    useEffect(() => {
+        const used = collection(firestore, "used");
+        getDocs(used).then(res => {
+            const numbersUsed: object[] = [];
+            res.forEach(doc => {
+                numbersUsed.push(doc.data());
+            });
+            setNumbersUsed(numbersUsed as NumberUsed[])
+        });
+    }, []);
 
     return (
         <>
@@ -32,7 +51,7 @@ export default function WantParticipate() {
                     <div className="modal-action">
                         <form method="dialog" className='flex gap-3 flex-wrap'>
                             <a href='https://ouo.io/wbV16z' target='_blank' className='btn btn-accent'>¡Apoya con 1 Click!</a>
-                            <NumberAvailable />
+                            <NumberAvailable numbersUsed={numbersUsed} />
                             <button className="btn" onClick={() => modalRef.current?.close()}>Cerrar</button>
                         </form>
                     </div>

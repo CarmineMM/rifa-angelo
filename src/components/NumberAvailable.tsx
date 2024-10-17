@@ -1,9 +1,13 @@
-import React, { useCallback, useRef } from 'react'
-import getDataUsed from '../data/01.json'
+import React, { useCallback, useMemo, useRef } from 'react'
+import { type NumberUsed } from './WantParticipate'
 
-const NumberAvailable = () => {
+interface Props {
+    numbersUsed: NumberUsed[]
+}
+
+const NumberAvailable = ({ numbersUsed }: Props) => {
     const modalRef = useRef<HTMLDialogElement | null>(null)
-    const alreadyUsed = useRef(getDataUsed.used.map(item => item.num) as number[]).current
+    const alreadyUsed = useMemo(() => numbersUsed.map(item => item.num) as number[], [numbersUsed])
 
     /**
      * Click sobre el botón, para ver números disponibles
@@ -38,7 +42,7 @@ const NumberAvailable = () => {
                                 <button
                                     className={`hover:bg-base-300 transition cursor-pointer rounded px-2 py-1 ${alreadyUsed.includes(num) ? 'bg-success-content hover:bg-base-content text-base-200 tooltip' : ''}`}
                                     onClick={(e) => handleClickNum(e, num)}
-                                    data-tip={`Ocupado por: ${getDataUsed.used.find(item => item.num === num)?.name}`}
+                                    data-tip={`Ocupado por: ${numbersUsed.find(item => item.num === num)?.name}`}
                                     type='button'
                                 >{num < 10 ? `0${num}` : num}</button>
                             </li>
