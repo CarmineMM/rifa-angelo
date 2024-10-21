@@ -8,7 +8,7 @@ const Acknowledgements = () => {
                 <span>Agradecimientos a</span>
                 <a className='underline flex' href="https://zeabur.com?referralCode=CarmineMM" target='_blank'><img src={ZeaburLogo} alt="" className='w-15 h-3' /></a>
                 <span> y </span>
-                <a href="https://github.com/" target='_blank' className='underline'>Carmine Maggio</a>
+                <a href="https://github.com/CarmineMM" target='_blank' className='underline'>Carmine Maggio</a>
             </p>
         </div>
     )
